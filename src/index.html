@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+      .mmm{
+          display: flex;
+          flex-direction: column;
+      }
+  </style>
+</head>
+
+<body>
+  <h1>Vue Component 标签</h1>
+  <hr>
+  <div id="app">
+    <component v-bind:is="who"></component>
+    <button @click="changeComponent">我变换</button>
+    <div class="mmm">
+        <span>123</span>
+        <span>456</span>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    var componentA={
+        template:`<div style="color:red">我是 componentA</div>`
+    }
+    var componentB={
+        template:`<div style="color:green">我是 componentB</div>`
+    }
+    var componentC={
+        template:`<div style="color:rebeccapurple">我是 componentC</div>`
+    }
+    var app = new Vue({
+        el:'#app',
+        data:{
+            who:'componentA'
+        },
+        components:{
+            'componentA':componentA,
+            'componentB':componentB,
+            'componentC':componentC
+        },
+        methods:{
+            changeComponent:function(){
+                if(this.who=='componentA'){
+                    this.who='componentB'
+                }else if(this.who=='componentB'){
+                    this.who='componentC'
+                }else{
+                    this.who='componentA'
+                }
+            }
+        }
+    })
+  </script>
+</body>
+
+</html>
